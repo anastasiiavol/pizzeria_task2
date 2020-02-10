@@ -15,7 +15,9 @@ main {
     margin: auto;
     padding: 0.5rem;
     text-align: center;
+
 }
+
 a {
     text-decoration: none;
     color: #fff5e9;
@@ -137,30 +139,47 @@ a {
     top: 0;
 }
 
-.choosingView{
+.choosingView {
     width: 100vw;
     height: 40vh;
     background-color: #fff5e9;
 }
+
 .sortArea {
+    padding: 10px;
     width: 100vw;
     height: 10vh;
 }
-.dropBtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
+
+.button-sort_list {
+    display: block;
+    background-color: #fff5e9;
+    color: #101218;
+    padding: 10px;
     font-size: 16px;
+    width: 10vw;
+    margin-left: 10px;
+    margin-bottom: 20px;
     border: none;
-    cursor: pointer;
+    border-radius: 3px;
 }
-.checkboxTitle{
+
+.checkbox_title {
     color: white;
     font-size: medium;
+    text-transform: capitalize;
+    margin-right: 5px;
+    text-align: center;
 }
-.gridBtn{
+
+.checkbox {
+    height: 15px;
+    width: 15px;
+}
+
+.button-choose_view {
     margin-top: 10vw;
-    margin-left: 37vw;
+    margin-left: 28vw;
     line-height: 60px;
     padding: 0 40px;
     background: #101218;
@@ -170,23 +189,15 @@ a {
     text-transform: uppercase;
     font-size: 15px;
 }
-.gridBtn:hover{
+
+.gridBtn:hover {
     background: #2f3540;
 }
-.listBtn{
-    margin-left: 10vw;
-    line-height: 60px;
-    padding: 0 40px;
-    background: #101218;
-    border: none;
-    border-radius: 2px;
-    color: #fff5e9;
-    text-transform: uppercase;
-    font-size: 15px;
-}
-.listBtn:hover{
+
+.listBtn:hover {
     background: #2f3540;
 }
+
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
@@ -195,21 +206,24 @@ a {
     align-items: center;
     margin: auto;
     padding: 1rem 0;
+
 }
 
-.containerList{
+.containerList {
     max-width: 900px;
     margin: auto;
     padding: 0.5rem;
     text-align: left;
+
 }
 
-.filterDiv{
+.block_filter {
     width: 100vw;
     height: 25vh;
     background-color: #292e3d;
-
+    padding: 20px;
 }
+
 .card {
     display: flex;
     align-items: center;
@@ -220,12 +234,13 @@ a {
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     border-radius: 10px;
     margin: auto;
-    white-space: pre-wrap;
+    /*   white-space: pre-wrap;*/
 }
 
-.card:hover{
+.card:hover {
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.19), 0 10px 10px rgba(0, 0, 0, 0.23);
 }
+
 .card--avatar {
     width: 100%;
     height: 10rem;
@@ -242,15 +257,49 @@ a {
     margin-bottom: 0.5rem;
 }
 
-.card--info{
+.footer{
+    overflow: hidden;
+    background-color: #101218;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+
+.footer_text:hover{
+    color: #898989;
+}
+
+.email{
+    border-radius: 2px;
+    border: 1px solid #676767;
+    margin-left: 10px;
+    background-color:  #fff5e9;
+    height: 25px;
+    background-color: #fff5e9;
+    padding: 5px;
+
+}
+
+.footer_text{
+    color: #676767;
+    margin-top: 10px;
+    font-size: 1em;
+
+}
+.footer_icons{
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.card--info {
     color: #222;
     font-weight: 500;
     text-transform: capitalize;
     font-size: 1rem;
-    overflow:hidden;
+    overflow: hidden;
     margin-top: 0.8rem;
-
-
 }
 
 @media (min-width: 800px) {

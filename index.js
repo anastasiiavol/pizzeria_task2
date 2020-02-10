@@ -1,11 +1,12 @@
 'use strict';
 
+//create page elements
 const container = document.querySelector(".container");
 const containerList = document.querySelector(".containerList");
-const filterDiv = document.querySelector(".filterDiv");
+const filterDiv = document.querySelector(".block_filter");
 const choosingView = document.querySelector(".choosingView");
 
-
+//create pizza class
 let pizzaArr = [];
 
 class PizzaItem {
@@ -52,13 +53,14 @@ let ingredients = [
     'chicken', 'pepper', 'cheese', 'pineapple'
 ];
 
-
+//Grid view  parameters
 function handleGridMode() {
     showFilterList();
     hideSortList();
     getGridContent(pizzaArr);
 }
 
+//List view  parameters
 function handleListMode() {
     hideFilterList();
     showSortList();
@@ -81,6 +83,7 @@ function getGridContent(pizzasGrid) {
     return output;
 }
 
+//create list menu function
 function getListContent(pizzasList) {
     let output = "";
     pizzasList.forEach(
@@ -96,12 +99,13 @@ btnDiv.className = "choosingView";
 choosingView.append(btnDiv);
 
 let gridBtn = document.createElement("button");
-gridBtn.className = "gridBtn";
+gridBtn.className = "button-choose_view";
 gridBtn.innerHTML = "Grid";
 
 let bodyGrid = document.getElementsByTagName("bodyGrid")[0];
 btnDiv.appendChild(gridBtn);
 
+//adding listener on Grid View Button
 gridBtn.addEventListener("click", function () {
     document.querySelector(".containerList").innerHTML = "";
     handleGridMode();
@@ -111,41 +115,47 @@ gridBtn.addEventListener("click", function () {
 
 //create list menu button
 let listBtn = document.createElement("button");
-listBtn.className = "listBtn";
+listBtn.className = "button-choose_view";
 listBtn.innerHTML = "List";
 createSortList();
 createCheckBoxes(ingredients);
+
 let bodysList = document.getElementsByTagName("bodyList")[0];
 btnDiv.appendChild(listBtn);
 
+//adding listener on List View Button
 listBtn.addEventListener("click", function () {
     document.querySelector(".container").innerHTML = "";
     handleListMode();
 });
 
 
-//create "sort by" button
+//create area for sort buttons
 function createSortList() {
     let sortArea = document.createElement("div");
     sortArea.className = "sortArea";
     filterDiv.appendChild(sortArea);
 
+    //create "sort by names" button
     let sortByNamesButton = document.createElement("button");
-    sortByNamesButton.className = "dropBtn";
+    sortByNamesButton.className = "button-sort_list";
     sortArea.appendChild(sortByNamesButton);
     sortByNamesButton.innerHTML = "Sort By Names";
 
+    //create "sort by prices" button
     let sortByPricesButton = document.createElement("button");
-    sortByPricesButton.className = "dropBtn";
+    sortByPricesButton.className = "button-sort_list";
     sortArea.appendChild(sortByPricesButton);
     sortByPricesButton.innerHTML = "Sort By Prices";
 
+    //adding listener on sortByNamesButton
     sortByNamesButton.addEventListener("click", function () {
         document.querySelector(".container").innerHTML = "";
         let pizzasList = sortByNames(pizzaArr);
         getListContent(pizzasList);
     });
 
+    //adding listener on sortByPricesButton
     sortByPricesButton.addEventListener("click", function () {
         document.querySelector(".container").innerHTML = "";
         let pizzasList = sortByPrices(pizzaArr);
@@ -153,19 +163,21 @@ function createSortList() {
     });
 }
 
+//create functions for hiding and showing sort/filter areas
 function hideSortList() {
-    let elements = filterDiv.getElementsByClassName("dropBtn");
+    let elements = filterDiv.getElementsByClassName("button-sort_list");
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.visibility = "hidden";
     }
 }
 
 function showSortList() {
-    let elements = filterDiv.getElementsByClassName("dropBtn");
+    let elements = filterDiv.getElementsByClassName("button-sort_list");
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.visibility = "visible";
     }
 }
+
 function hideFilterList() {
     let elements = filterDiv.getElementsByClassName("filterArea");
     for (let i = 0; i < elements.length; i++) {
@@ -179,9 +191,6 @@ function showFilterList() {
         elements[i].style.visibility = "visible";
     }
 }
-
-
-//create Pizza class
 
 //list sort by prices
 function sortByPrices(pizzas) {
@@ -209,6 +218,7 @@ function sortByNames(pizzas) {
     return sortedList;
 }
 
+//create sort by ingredients function
 function filterByIngredients(pizzas, ingredients) {
     if (ingredients.length === 0) {
         return [...pizzas];
@@ -229,10 +239,14 @@ function filterByIngredients(pizzas, ingredients) {
     return filtered;
 }
 
+
+
+//create checkboxes for ingredients
 function createCheckBoxes(ingredients) {
     let filterArea = document.createElement("div");
     filterArea.className = "filterArea";
     filterDiv.appendChild(filterArea);
+
 
     ingredients.forEach((ingredient) => {
         let checkbox = document.createElement("input");
@@ -250,16 +264,20 @@ function createCheckBoxes(ingredients) {
             getGridContent(filteredPizzas);
         });
 
-        let span = document.createElement("span");
+        let checkboxLabel = document.createElement("label");
+        checkboxLabel.className = "checkbox_label";
+        filterArea.appendChild(checkboxLabel);
         let node = document.createTextNode(ingredient);
-        span.className = "checkboxTitle";
-        span.appendChild(node);
+        checkboxLabel.className = "checkbox_title";
+        checkboxLabel.appendChild(node);
+
+
         filterArea.appendChild(checkbox);
-        filterArea.appendChild(span);
+
     });
 }
 
-//grid or list view
+//grid or list view confirm window
 function selectView() {
     let view = confirm("Do you want to display the page as a grid?");
     if (view === true) {
